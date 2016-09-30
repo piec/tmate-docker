@@ -25,15 +25,16 @@ RUN git clone https://github.com/msgpack/msgpack-c.git && \
     cmake . && \
     make && \
     make install && \
-    cd ..
+    cd .. && \
+    rm -rf msgpack-c
 
-RUN git clone https://github.com/nviennot/tmate-slave.git
-
-RUN cd tmate-slave && \
+RUN git clone https://github.com/nviennot/tmate-slave.git && \
+    cd tmate-slave && \
     ./create_keys.sh && \
     ./autogen.sh && \
     ./configure && \
-     make
+     make && \
+     rm -rf tmate-slave
 
 RUN mkdir /etc/service/tmate-slave
 ADD tmate-slave.sh /etc/service/tmate-slave/run
